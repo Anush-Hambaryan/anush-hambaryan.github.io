@@ -615,6 +615,10 @@ p {
     order: 2;
   }
 
+  .portrait-card img {
+    object-position: 50% 8%;
+  }
+
   .text-link {
     margin-top: 30px;
   }
