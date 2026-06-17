@@ -1,0 +1,200 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const navItems = [
+  { href: `${base}#projects`, label: "Projects" },
+  { href: `${base}#about`, label: "About" },
+  { href: `${base}Anush_CV.pdf`, label: "CV" },
+];
+
+const highlights = [
+  {
+    text: "Previously at",
+    strong: "BluIP.",
+    href: "https://www.bluip.com/",
+  },
+  {
+    text: "Built enterprise AI reporting systems, automation workflows, and modern web applications.",
+  },
+  {
+    text: "Currently building",
+    strong: "Bellis.",
+    href: "https://mybellis.xyz/",
+  },
+];
+
+const skillGroups = [
+  {
+    icon: "ai",
+    title: "AI Systems",
+    description: "Workflow orchestration, tracing, evaluation and production integrations for AI-powered features.",
+    skills: ["LangChain", "LangGraph", "Langfuse", "Dialogflow CX"],
+  },
+  {
+    icon: "code",
+    title: "App Development",
+    description: "Full-stack product development from API design to polished frontend experiences.",
+    skills: ["TypeScript", "React", "Next.js", "Node.js", "Python"],
+  },
+  {
+    icon: "data",
+    title: "Data & Cloud",
+    description: "Reporting systems, data access patterns, and cloud-backed application infrastructure.",
+    skills: ["BigQuery", "SQL", "MongoDB", "GCP", "Azure"],
+  },
+];
+
+const Icon = ({ name, class: className = "" }) => {
+  const icons = {
+    code: '<path d="m10 8-4 4 4 4"/><path d="m14 16 4-4-4-4"/><path d="m13 5-2 14"/>',
+    arrow: '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
+    arrowDown: '<path d="M12 5v14"/><path d="m6 13 6 6 6-6"/>',
+    mail: '<path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/>',
+    phone:
+      '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.89.32 1.76.6 2.59a2 2 0 0 1-.45 2.11L8 9.68a16 16 0 0 0 6.32 6.32l1.26-1.26a2 2 0 0 1 2.11-.45c.83.28 1.7.48 2.59.6A2 2 0 0 1 22 16.92Z"/>',
+    github:
+      '<path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6a5 5 0 0 0-1-4 5 5 0 0 0 0-4s-1 0-4 2a14 14 0 0 0-7 0C5 1 4 1 4 1a5 5 0 0 0 0 4 5 5 0 0 0-1 4c0 4 3 6 6 6a4 4 0 0 0-1 3v4"/><path d="M9 18c-4 2-5-2-7-2"/>',
+    linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><path d="M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>',
+    ai: '<rect x="4" y="6" width="16" height="12" rx="3"/><path d="M12 6V3"/><path d="M8 3h8"/><path d="M8 21h8"/><path d="M8 18v3"/><path d="M16 18v3"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M11 15h2"/><path d="M2 10h2"/><path d="M20 10h2"/>',
+    data: '<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 2 3 3 7 3s7-1 7-3V5"/><path d="M5 11v6c0 2 3 3 7 3s7-1 7-3v-6"/>',
+  };
+
+  return `<svg class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
+};
+---
+
+<Layout>
+  <header class="site-header">
+    <a class="brand" href={base} aria-label="Anush Hambaryan home">AH</a>
+    <nav class="nav" aria-label="Main navigation">
+      {navItems.map((item) => (
+        <a href={item.href} class="nav-link">{item.label}</a>
+      ))}
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Anush<br />Hambaryan</h1>
+        <div class="hero-details">
+          <div class="rule"></div>
+          <p class="hero-subtitle">Full stack software engineer<br class="desktop-break" /> building AI products.</p>
+
+          <div class="highlights" aria-label="Professional highlights">
+            {highlights.map((item) => (
+              <div class="highlight-row">
+                <p>
+                  {item.text}
+                  {item.strong && item.href && (
+                    <strong>
+                      {" "}
+                      <a href={item.href} target="_blank" rel="noreferrer">{item.strong}</a>
+                    </strong>
+                  )}
+                  {item.strong && !item.href && <strong> {item.strong}</strong>}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <a class="text-link contained-link explore-button" href={`${base}#projects`}>
+            Explore
+            <span set:html={Icon({ name: "arrowDown" })} />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="featured section-shell" aria-labelledby="project-title">
+      <div class="featured-copy">
+        <p class="eyebrow">Featured Project</p>
+        <h2 id="project-title">Bellis</h2>
+        <div class="rule small"></div>
+        <p>AI-powered language learning platform. Transforms search into explanations, flashcards and memory cues.</p>
+        <dl class="project-meta" aria-label="Bellis project details">
+          <div>
+            <dt>Stack</dt>
+            <dd>Next.js, LangGraph, Langfuse</dd>
+          </div>
+        </dl>
+        <a class="text-link contained-link project-button" href="https://mybellis.xyz/about" target="_blank" rel="noreferrer">
+          Explore Bellis
+          <span set:html={Icon({ name: "arrow" })} />
+        </a>
+      </div>
+
+      <div class="project-frame" aria-label="Bellis product preview">
+        <img src={`${base}bellis-selected-project.png`} alt="Bellis word lookup and flashcard interface" />
+      </div>
+    </section>
+
+    <section id="about" class="about section-shell" aria-labelledby="about-title">
+      <div class="portrait-card">
+        <img
+          src={`${base}anush-portrait.png`}
+          alt="Portrait of Anush Hambaryan"
+          width="1024"
+          height="1536"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+
+      <div class="about-copy">
+        <p class="eyebrow">About</p>
+        <h2 id="about-title">Product-minded engineer</h2>
+        <div class="rule small"></div>
+        <p>I build full-stack AI products that help organizations solve complex business problems and create measurable value.</p>
+        <p>From backend systems and model workflows to user-facing applications, I create software that turns data and automation into practical tools that improve decision-making, streamline operations, and drive business outcomes.</p>
+      </div>
+
+      <div class="skills" aria-label="Skills">
+        <p class="eyebrow">Skills</p>
+        <div class="skill-grid">
+          {skillGroups.map((group) => (
+            <section class="skill-group">
+              <div class="skill-title">
+                <span set:html={Icon({ name: group.icon })} />
+                <h3>{group.title}</h3>
+              </div>
+              <p>{group.description}</p>
+              <ul>
+                {group.skills.map((skill) => <li>{skill}</li>)}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer section-shell">
+    <div class="contact-column">
+      <a href="mailto:anushhambaryan@gmail.com">
+        <span set:html={Icon({ name: "mail" })} />
+        anushhambaryan@gmail.com
+      </a>
+      <a href="tel:+37493960527">
+        <span set:html={Icon({ name: "phone" })} />
+        +374 (93) 96-05-27
+      </a>
+    </div>
+    <div class="contact-column social">
+      <a href="https://github.com/Anush-Hambaryan" target="_blank" rel="noreferrer">
+        <span set:html={Icon({ name: "github" })} />
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/anush-hambaryan/" target="_blank" rel="noreferrer">
+        <span set:html={Icon({ name: "linkedin" })} />
+        LinkedIn
+      </a>
+    </div>
+  </footer>
+</Layout>
