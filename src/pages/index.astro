@@ -8,7 +8,7 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 const navItems = [
   { href: `${base}#projects`, label: "Projects" },
   { href: `${base}#about`, label: "About" },
-  { href: `${base}Anush_CV.pdf`, label: "CV" },
+  { href: `${base}Anush_Hambaryan_CV.pdf`, label: "CV" },
 ];
 
 const highlights = [
@@ -31,20 +31,20 @@ const skillGroups = [
   {
     icon: "ai",
     title: "AI Systems",
-    description: "Workflow orchestration, tracing, evaluation and production integrations for AI-powered features.",
-    skills: ["LangChain", "LangGraph", "Langfuse", "Dialogflow CX"],
+    description: "Workflow orchestration, Retrieval-augmented generation (RAG), context engineering, tracing, evaluation, and model integrations.",
+    skills: ["LLMs", "Generative AI", "RAG", "Context Engineering", "LangChain", "LangGraph", "Langfuse", "OpenAI API", "Dialogflow CX"],
   },
   {
     icon: "code",
     title: "App Development",
     description: "Full-stack product development from API design to polished frontend experiences.",
-    skills: ["TypeScript", "React", "Next.js", "Node.js", "Python"],
+    skills: ["TypeScript", "Node.js", "Python", "React", "Redux", "Next.js", "Material UI", "Tailwind CSS"],
   },
   {
     icon: "data",
-    title: "Data & Cloud",
+    title: "Data, Cloud & Automation",
     description: "Reporting systems, data access patterns, and cloud-backed application infrastructure.",
-    skills: ["BigQuery", "SQL", "MongoDB", "GCP", "Azure"],
+    skills: ["SQL", "BigQuery", "Pub/Sub", "MongoDB", "ChromaDB", "GCP", "Azure", "MS Power Platform", "Make"],
   },
 ];
 
@@ -128,8 +128,20 @@ const Icon = ({ name, class: className = "" }) => {
         </a>
       </div>
 
-      <div class="project-frame" aria-label="Bellis product preview">
-        <img src={`${base}bellis-selected-project.png`} alt="Bellis word lookup and flashcard interface" />
+      <div class="project-frame">
+        <video
+          aria-label="Bellis language learning product demo"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+          preload="metadata"
+          poster={`${base}bellis-selected-project.png`}
+        >
+          <source src={`${base}bellis-demo.mp4`} type="video/mp4" />
+          Your browser does not support embedded videos.
+        </video>
       </div>
     </section>
 
@@ -152,7 +164,7 @@ const Icon = ({ name, class: className = "" }) => {
         <div class="rule small"></div>
         <p>I build full-stack AI products that help organizations solve complex business problems and create measurable value.</p>
         <p>From backend systems and model workflows to user-facing applications, I create software that turns data and automation into practical tools that improve decision-making, streamline operations, and drive business outcomes.</p>
-        <a class="text-link contained-link" href={`${base}Anush_CV.pdf`}>
+        <a class="text-link contained-link" href={`${base}Anush_Hambaryan_CV.pdf`}>
           View CV
           <span set:html={Icon({ name: "arrow" })} />
         </a>
